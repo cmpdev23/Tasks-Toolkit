@@ -1,7 +1,5 @@
 from flask import Flask, request, jsonify
 import logging
-import json
-from datetime import datetime
 from pipedrive_operations.update_pipedrive_activity import update_pipedrive_activity
 from utils.create_pipedrive_deal_link import create_pipedrive_link
 from pipedrive_operations.get_person_name import get_person_name
@@ -58,9 +56,8 @@ def rdvsyncer():
     if not person_name:
         person_name = "Rendez-vous"
 
-    # Mise à jour de l'activité dans Pipedrive 
+    # Mise à jour de l'activité dans Pipedrive
     update_pipedrive_activity(activity_id, note, person_name, subject)
-
 
     return jsonify({"message": "Success"}), 200
 
